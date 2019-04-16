@@ -1,0 +1,36 @@
+HINT: 6 7 -  port b - xt1 xt2;
+
+*switch on stk500
+
+//add programming connection between  pc and stk500
+
+*tools - add target 
+
+select stk 500 and comport 
+
+APPLY
+
+
+
+*tools-devicce programming (ctrl+shift+p)
+
+choose stk500 and COMport number again ... interface (ISP)
+
+APPLY
+
+HINT: UNABLE TO CONNECT if port is incorect 
+
+
+click Memories (on right bar)
+
+)choose HEX file with source code (NOT ELF) 
+//search in debug folder
+
+hit PROGRAM button ! ...............
+
+
+//Debug - Windows - I/O 
+//toglle top left button to hide others unnecesary ports
+
+Debug - start debugging and brake 
+
