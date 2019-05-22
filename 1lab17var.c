@@ -13,6 +13,7 @@
 */
 
 #include <avr/io.h>
+#include <util/delay.h>
 
 #define SW4 0b11101111
 #define SW5 0b11011111
@@ -30,10 +31,12 @@ int main(void)
 	PORTD = 0xFF ; //pull up resistors
     while (1) 
     {
-		if (PIND == SW4 || PIND == SW5 || PIND == SW6  ) //no comment 
-			PORTB=LED4&LED5; 
+		if (PIND == SW4 || PIND == SW5 || PIND == SW6  ){ //no comment 
+			PORTB=LED4&LED5;
+                        _delay_ms(200); }
 		if (PIND == SW4&SW5 || PIND == SW4&SW6 || PIND == SW5&SW6 )
-			PORTB=LED6;	
+			PORTB=LED6;{
+                        _delay_ms(200);}	
 		
 		
     }
