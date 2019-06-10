@@ -19,7 +19,7 @@ volatile char mode=2;
 
 ISR(PCINT0_vect) {
 		
-	if (mode == 2){
+	
 		
 		
 	if (PINB == SW1 ) 
@@ -30,19 +30,14 @@ ISR(PCINT0_vect) {
 		mode = 0;
 		
 	
-	
-	}else{
-if(mode==1) 
+        if(mode==1) 
 			
-			PORTD = PORTD | (~(PINB));
-		
-	
-		else 
+	        PORTD = PORTD | (~(PINB));
+	if(mode==0) 
 			
+		PORTD &= PINB;
 			
-			PORTD &= PINB;
-			
-		}
+
 _delay_ms(600);
 }
 
