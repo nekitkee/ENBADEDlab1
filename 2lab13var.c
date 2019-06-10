@@ -16,24 +16,34 @@
 #define SW2 0b11111011
 
 volatile char mode=2;
-volatile char temp =0;
 
 ISR(PCINT0_vect) {
 		
 	if (mode == 2){
 		
 		
-	if (PINB == SW1 ) {
+	if (PINB == SW1 ) 
 		mode = 1; //off
-	}
 	
-	if (PINB == SW2) {//on
+	
+	if (PINB == SW2)//on
 		mode = 0;
 		
-	}
-	_delay_ms(600);
-	//cli();
-	}
+	
+	
+	}else{
+if(mode==1) 
+			
+			PORTD = PORTD | (~(PINB));
+		
+	
+		else 
+			
+			
+			PORTD &= PINB;
+			
+		}
+_delay_ms(600);
 }
 
 
@@ -50,7 +60,7 @@ int main(void)
 	
 
 	PCICR|=(1<<PCIE0);
-	PCMSK0=0b00000110;
+	PCMSK0=0b11111111;
 	
 	
 sei();
@@ -60,22 +70,7 @@ sei();
     {
 		
 		
-		if(mode==1 && PINB!= 0xFF ) { 
-			
-			PORTD = PORTD | (~(PINB));
-			_delay_ms(300);
-			mode=2;
-			//sei();
-		}
-	
-		if (mode==0 && PINB != 0xFF) { 
-			
-			
-			PORTD &= PINB;
-			_delay_ms(300);
-			mode=2;
-			//sei();
-		}
+		
     }
 }
 
